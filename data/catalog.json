@@ -1,0 +1,43 @@
+{
+  "races": [
+    {
+      "id": "2024-sao-paulo-gp",
+      "name": "2024 São Paulo Grand Prix",
+      "shortName": "São Paulo GP",
+      "year": 2024,
+      "circuit": "Interlagos",
+      "country": "Brazil",
+      "date": "2024-11-03",
+      "sessionKey": 9636,
+      "meetingKey": 1249,
+      "notes": "Wet-weather epic: Verstappen wins from 17th; safety car, red flag and penalties.",
+      "file": "races/2024-sao-paulo-gp.json"
+    },
+    {
+      "id": "2024-british-gp",
+      "name": "2024 British Grand Prix",
+      "shortName": "British GP",
+      "year": 2024,
+      "circuit": "Silverstone",
+      "country": "United Kingdom",
+      "date": "2024-07-07",
+      "sessionKey": 9558,
+      "meetingKey": 1240,
+      "notes": "Dry-to-wet classic at Silverstone; five lead changes and a late Hamilton win.",
+      "file": "races/2024-british-gp.json"
+    },
+    {
+      "id": "2024-monaco-gp",
+      "name": "2024 Monaco Grand Prix",
+      "shortName": "Monaco GP",
+      "year": 2024,
+      "circuit": "Monte Carlo",
+      "country": "Monaco",
+      "date": "2024-05-26",
+      "sessionKey": 9523,
+      "meetingKey": 1236,
+      "notes": "Leclerc converts pole; lap-one red flag and a restart.",
+      "file": "races/2024-monaco-gp.json"
+    }
+  ]
+}

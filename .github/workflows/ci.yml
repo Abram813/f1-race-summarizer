@@ -1,0 +1,76 @@
+name: fresh-clone-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows x64
+          - os: macos-15
+            label: macOS arm64
+          - os: macos-15-intel
+            label: macOS x86_64
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/race summarize/f1-race-summarizer
+    steps:
+      - name: Fresh clone into a path containing spaces
+        uses: actions/checkout@v4
+        with:
+          path: race summarize/f1-race-summarizer
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: race summarize/f1-race-summarizer/package-lock.json
+
+      - name: Record OS, architecture, Python and uv versions
+        run: |
+          node --version
+          npm --version
+          node -e "console.log(process.platform + ' ' + process.arch)"
+          uname -a || true
+          python --version || python3 --version || echo "python: unavailable"
+          uv --version || echo "uv: not installed (not used by this Node repository)"
+          {
+            echo "### ${{ matrix.label }}"
+            echo '```'
+            node --version
+            npm --version
+            node -e "console.log(process.platform + ' ' + process.arch)"
+            uname -a || true
+            python --version || python3 --version || echo "python: unavailable"
+            uv --version || echo "uv: not installed (not used by this Node repository)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Install dependencies (README command 1)
+        run: npm ci
+
+      - name: Offline tests with external data and model requests blocked
+        run: npm run test:offline
+
+      - name: Production build (README command 2)
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+
+      - name: Start app, display demo, exercise an action, shut down
+        run: npm run test:smoke

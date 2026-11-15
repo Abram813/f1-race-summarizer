@@ -1,7 +1,9 @@
 import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
 
-const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-const child = spawn(npx, ['vitest', 'run'], {
+const require = createRequire(import.meta.url);
+const vitest = require.resolve('vitest/vitest.mjs');
+const child = spawn(process.execPath, [vitest, 'run'], {
   stdio: 'inherit',
   env: { ...process.env, OFFLINE_GUARD: '1' },
 });

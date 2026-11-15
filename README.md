@@ -178,7 +178,21 @@ availability, then runs `npm ci`, `npm run test:offline`, `npm run build`,
 installs Chromium, and runs `npm run test:smoke`. The latest workflow run and
 per-platform results are recorded here after the first run:
 
-<!-- CI_RESULTS -->
+Latest successful run: [fresh-clone-ci #43661707252](https://github.com/Abram813/f1-race-summarizer/actions/runs/43661707252)
+(commit `6498fc3`). All three jobs passed.
+
+| Runner | Actual OS / CPU | Node / npm | Python | uv | Result |
+| --- | --- | --- | --- | --- | --- |
+| Windows x64 | Windows Server 2025, x86_64 | v24.22.2 / 11.19.1 | 3.12.10 | not installed (not used) | **passed** |
+| macOS arm64 | macOS 15 (Darwin 24.6.0), arm64 | v24.22.2 / 11.19.1 | 3.14.10 | not installed (not used) | **passed** |
+| macOS x86_64 | macOS 15 (Darwin 24.6.0), x86_64 | v24.19.0 / 11.17.0 | 3.14.7 | not installed (not used) | **passed** |
+
+The checkout path on every runner was `race summarize/f1-race-summarizer`, so
+the README commands were exercised from a path containing a space. Every job
+ran `npm ci`, `npm run test:offline`, `npm run build`, installed Playwright
+Chromium, and passed `npm run test:smoke` (demo, race switching, evidence
+search, Markdown download, no external requests, clean shutdown and closed
+port).
 
 Python and uv are **not used by this repository**. The CI step reports the
 runner's Python version for the record and prints that uv is not installed

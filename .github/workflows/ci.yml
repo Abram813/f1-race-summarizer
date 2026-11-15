@@ -26,6 +26,7 @@ jobs:
             label: macOS x86_64
     defaults:
       run:
+        shell: bash
         working-directory: ${{ github.workspace }}/race summarize/f1-race-summarizer
     steps:
       - name: Fresh clone into a path containing spaces

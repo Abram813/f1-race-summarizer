@@ -178,8 +178,10 @@ availability, then runs `npm ci`, `npm run test:offline`, `npm run build`,
 installs Chromium, and runs `npm run test:smoke`. The latest workflow run and
 per-platform results are recorded here after the first run:
 
-Latest successful run: [fresh-clone-ci #43661707252](https://github.com/Abram813/f1-race-summarizer/actions/runs/43661707252)
-(commit `6498fc3`). All three jobs passed.
+Latest fully verified code run: [fresh-clone-ci #43661707252](https://github.com/Abram813/f1-race-summarizer/actions/runs/43661707252)
+(commit `6498fc3`). The README-only commit `987ba09` also passed the same
+workflow in [run #43662303162](https://github.com/Abram813/f1-race-summarizer/actions/runs/43662303162).
+All three jobs passed in both runs.
 
 | Runner | Actual OS / CPU | Node / npm | Python | uv | Result |
 | --- | --- | --- | --- | --- | --- |
